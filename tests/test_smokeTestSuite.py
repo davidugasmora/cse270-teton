@@ -32,10 +32,8 @@ class TestSmokeTestSuite():
     assert self.driver.title == "Teton Idaho CoC"
   
   def test_joinPageTest(self):
-    self.driver.get("http://127.0.0.1:5500/")
+    self.driver.get("http://127.0.0.1:5500/teton/1.6/index.html")
     self.driver.set_window_size(1550, 830)
-    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(3) .name").click()
-    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(2) .name").click()
     self.driver.find_element(By.LINK_TEXT, "Join").click()
     elements = self.driver.find_elements(By.NAME, "fname")
     assert len(elements) > 0
@@ -52,10 +50,8 @@ class TestSmokeTestSuite():
     assert len(elements) > 0
   
   def test_homePageTest(self):
-    self.driver.get("http://127.0.0.1:5500/")
+    self.driver.get("http://127.0.0.1:5500/teton/1.6/index.html")
     self.driver.set_window_size(1550, 830)
-    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(3) .name").click()
-    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(2) .name").click()
     elements = self.driver.find_elements(By.CSS_SELECTOR, ".spotlight1 > h4")
     assert len(elements) > 0
     elements = self.driver.find_elements(By.CSS_SELECTOR, ".spotlight2 > .centered-image")
@@ -65,18 +61,18 @@ class TestSmokeTestSuite():
     assert self.driver.find_element(By.CSS_SELECTOR, "section > h3").text == "Welcome to the Teton Chamber of Commerce Signup Wizard!"
   
   def test_directoryPageTest(self):
-    self.driver.get("http://127.0.0.1:5500/teton/1.6/directory.html")
+    self.driver.get("http://127.0.0.1:5500/teton/1.6/index.html")
     self.driver.set_window_size(1550, 830)
+    self.driver.find_element(By.LINK_TEXT, "Directory").click()
     self.driver.find_element(By.ID, "directory-grid").click()
     assert self.driver.find_element(By.CSS_SELECTOR, ".gold-member:nth-child(9) > p:nth-child(2)").text == "Teton Turf and Tree"
     self.driver.find_element(By.ID, "directory-list").click()
     assert self.driver.find_element(By.CSS_SELECTOR, ".gold-member:nth-child(9) > p:nth-child(2)").text == "Teton Turf and Tree"
+    self.driver.close()
   
   def test_adminPageTest(self):
-    self.driver.get("http://127.0.0.1:5500/")
+    self.driver.get("http://127.0.0.1:5500/teton/1.6/index.html")
     self.driver.set_window_size(1550, 830)
-    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(3) .name").click()
-    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(2) .name").click()
     self.driver.find_element(By.LINK_TEXT, "Admin").click()
     elements = self.driver.find_elements(By.ID, "username")
     assert len(elements) > 0
